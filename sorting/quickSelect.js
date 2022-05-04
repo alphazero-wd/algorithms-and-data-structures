@@ -1,19 +1,35 @@
-const findKthLargest = (nums, k) => {
-  return quickSelect(nums, 0, nums.length - 1, nums.length - k);
+const select = (array, left, right, k) => {
+  if (left == right)
+    // If the array contains only one element,
+    return array[left]; // return that element
+  const pivotIndex = partition(array, left, right);
+  // The pivot is in its final sorted position
+  if (k == pivotIndex) return array[k];
+  else if (k < pivotIndex) return select(array, left, pivotIndex - 1, k);
+  else return select(array, pivotIndex + 1, right, k);
 };
-const quickSelect = (nums, left, right, k) => {
-  const pivot = Math.floor((left + right) / 2);
-  if (pivot === k - 1) return nums[k];
-  else if (pivot > k - 1) return quickSelect(nums, left, pivot - 1, k);
-  else return quickSelect(nums, pivot + 1, right, k);
+const partition = (array, left, right) => {
+  const pivotIndex = Math.floor((left + right) / 2);
+  const pivot = array[pivotIndex];
+  swap(array, pivotIndex, right);
+  let storeIndex = left;
+  for (let i = left; i <= right; i++) {
+    if (array[i] < pivot) {
+      swap(array, i, storeIndex);
+      storeIndex++;
+    }
+  }
+  swap(array, right, storeIndex);
+  return storeIndex;
 };
 
-const array = [3, 2, 1, 5, 6, 4];
-const k = 2;
-console.time("method 1");
-console.log("Method 1: ", array.sort((a, b) => a - b)[array.length - k]);
-console.timeEnd("method 1");
+const swap = (array, i, j) => {
+  const temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+};
 
-console.time("method 2");
-console.log("Method 2: ", findKthLargest(array, k));
-console.timeEnd("method 2");
+const findKthLargest = (array, k) => {
+  k = array.length - k;
+  return select(array, 0, array.length - 1, k);
+};
