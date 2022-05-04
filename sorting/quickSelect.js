@@ -32,5 +32,3 @@ const findKthLargest = (array, k) => {
   k = array.length - k;
   return select(array, 0, array.length - 1, k);
 };
-const nums = [3, 2, 1, 5, 6, 4];
-console.log(findKthLargest(nums, 2));
