@@ -1,7 +1,4 @@
 const select = (array, left, right, k) => {
-  if (left == right)
-    // If the array contains only one element,
-    return array[left]; // return that element
   const pivotIndex = partition(array, left, right);
   // The pivot is in its final sorted position
   if (k == pivotIndex) return array[k];
@@ -29,7 +26,11 @@ const swap = (array, i, j) => {
   array[j] = temp;
 };
 
+// Time complexity: O(n)
+// Space complexity: O(1)
 const findKthLargest = (array, k) => {
   k = array.length - k;
   return select(array, 0, array.length - 1, k);
 };
+const nums = [3, 2, 1, 5, 6, 4];
+console.log(findKthLargest(nums, 2));
