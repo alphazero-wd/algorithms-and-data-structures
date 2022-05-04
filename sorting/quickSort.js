@@ -1,5 +1,5 @@
-// Time complexity: O(nlog2(n)) average, O(n^2) worst case
-// Space complexity: O(log2(n))
+// Time complexity: O(nlog(n)) average, O(n^2) worst case
+// Space complexity: O(log(n))
 const quickSort = (array) => {
   return quickSortHelper(array, 0, array.length - 1);
 };

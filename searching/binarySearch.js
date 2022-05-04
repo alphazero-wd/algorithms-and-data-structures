@@ -1,5 +1,5 @@
 // works only on sorted arrays
-// time complexity: O(nlog2(n))
+// time complexity: O(nlog(n))
 const binarySearch = (array, target) => {
   let low = 0,
     high = array.length - 1;
