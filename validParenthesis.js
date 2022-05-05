@@ -20,7 +20,3 @@ const isValidParenthesis = (s) => {
   }
   return stack.isEmpty();
 };
-
-console.log(isValidParenthesis("((()")); // false;
-console.log(isValidParenthesis("((((")); // false;
-console.log(isValidParenthesis("()()")); // true;
