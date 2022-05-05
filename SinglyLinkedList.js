@@ -8,7 +8,6 @@ class SinglyLinkedListNode {
 class SinglyLinkedList {
   constructor() {
     this.head = null;
-    this.size = 0;
   }
 
   isEmpty() {
@@ -27,7 +26,6 @@ class SinglyLinkedList {
       newHead.next = oldHead;
       this.head = newHead;
     }
-    this.size++;
   }
 
   // delete node whose data = given value
@@ -56,7 +54,6 @@ class SinglyLinkedList {
         prev.next = null;
       }
     }
-    this.size--;
   }
 
   // Time complexity: O(1)
@@ -65,7 +62,6 @@ class SinglyLinkedList {
     if (this.head !== null) {
       toReturn = this.head.data;
       this.head = this.head.next;
-      this.size--;
     }
     return toReturn;
   }
@@ -89,3 +85,4 @@ class SinglyLinkedList {
     return path;
   }
 }
+module.exports = SinglyLinkedList;
