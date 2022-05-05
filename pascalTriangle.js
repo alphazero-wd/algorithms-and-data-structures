@@ -18,6 +18,3 @@ const solve = (row, col) => {
   if (row === 0) return 0;
   return solve(row - 1, col - 1) + solve(row - 1, col);
 };
-
-const triangle = pascalTriangle(6);
-console.log(triangle);
