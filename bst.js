@@ -29,38 +29,39 @@ class BST extends BinaryTree {
       }
     }
   }
-
   // O(log(n)) for balanced trees
   // O(n) for unbalanced trees
-  deletefromBST(value) {
-    const deletefromBST = (root, value) => {
-      if (root === null) return null;
-      else if (root.val > value) root.left = deletefromBST(root.left, value);
-      else if (root.val < value) root.right = deletefromBST(root.right, value);
+  remove(value) {
+    return remove(this.root, value);
+    function remove(root, value) {
+      if (!root) return null;
+      else if (root.value > value) root.left = remove(root.left, value);
+      else if (root.value < value) root.right = remove(root.right, value);
       else {
-        if (!root.left && !root.right) return null;
-        else if (!root.left) {
+        if (!root.left && !root.right) {
+          root = null;
+          return root;
+        } else if (!root.left) {
           root = root.right;
           return root;
         } else if (!root.right) {
           root = root.left;
           return root;
         } else {
-          const deleteNode = findMin(root.right);
-          root.value = deleteNode.value;
-          root.right = deletefromBST(root.right, deleteNode.value);
+          const successor = findMin(root.right);
+          root.value = successor.value;
+          root.right = remove(root.right, successor.value);
           return root;
         }
       }
       return root;
-    };
-    const findMin = (root) => {
+    }
+
+    function findMin(root) {
       while (root.left) root = root.left;
       return root;
-    };
-    return deletefromBST(this.root, value);
+    }
   }
-
   // O(log(n)) for balanced trees
   // O(n) for unbalanced trees
   find(value) {
