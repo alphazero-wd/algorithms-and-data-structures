@@ -9,7 +9,8 @@ const countSort = (array) => {
   }
 
   for (let key in hash) {
-    countArr.push(parseInt(key));
+    for (let i = 0; i < hash[key]; i++)
+      countArr.push(parseInt(key));
   }
   return countArr;
 };
