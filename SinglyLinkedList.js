@@ -38,20 +38,14 @@ class SinglyLinkedList {
     } else {
       // in the middle of the SLL
       let prev = currentHead;
-      while (currentHead.next) {
+      while (currentHead) {
         if (currentHead.data === value) {
           prev.next = currentHead.next;
-          prev = currentHead;
-          currentHead = currentHead.next;
           break;
+        } else {
+          prev = currentHead;
         }
-        prev = currentHead;
         currentHead = currentHead.next;
-      }
-
-      // at the back of the SLL
-      if (currentHead.data === value) {
-        prev.next = null;
       }
     }
   }
