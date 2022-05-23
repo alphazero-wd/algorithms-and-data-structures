@@ -23,8 +23,8 @@ const knapsackMemoized = (weights, values, w, n, memo = {}) => {
   return memo[key];
 };
 
-// Time complexity: O(n * w) (n = number of items(values), w = weights of the knapsack (w))
-// Space complexity: O(n * w)
+// Time complexity: O(nw) (n = number of items(values), w = weights of the knapsack (w))
+// Space complexity: O(nw)
 const knapsackBottomUp = (weights, values, w, n) => {
   const dp = [...new Array(n + 1)].map(() => new Array(w + 1));
   for (let i = 0; i <= n; i++) {
@@ -40,9 +40,3 @@ const knapsackBottomUp = (weights, values, w, n) => {
   }
   return dp[n][w];
 };
-
-const weights = [1, 2, 4, 2, 5],
-  values = [5, 3, 5, 3, 2],
-  w = 10;
-
-console.log(knapsackBottomUp(weights, values, w, weights.length - 1));
