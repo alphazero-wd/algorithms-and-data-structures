@@ -12,13 +12,15 @@ const coinChange = (coins, amount) => {
   return coinChangeUtils(coins, coins.length, amount);
 };
 
+// Time complexity: O(nm)
+// Space complexity: O(m)
 const coinChangeBottomUp = (coins, amount) => {
-  const dp = [...Array(amount)].map(() => 0);
+  const dp = [...Array(amount + 1)].map(() => 0);
   dp[0] = 1;
-  for (let i = 1; i <= coins.length; i++) {
-    for (let coin of coins) {
+  for (let coin of coins) {
+    for (let i = 1; i <= amount; i++) {
       if (i - coin >= 0) dp[i] += dp[i - coin];
     }
   }
-  return dp[amount - 1];
+  return dp[amount];
 };
