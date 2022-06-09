@@ -1,7 +1,7 @@
 from typing import Dict, List
 from TopologicalSort import TopologicalSort
 
-class KorasajuSharirSCC:
+class KosarajuSharirSCC:
   def __init__(self) -> None:
     self.visited = set()
     self.count = 0
