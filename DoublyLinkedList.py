@@ -63,3 +63,9 @@ class DoublyLinkedList:
       path += str(cur.val) + ' ⇆ '
       cur = cur.next
     path += 'None'
+# Time complexity
+# n: # of nodes in a DLL
+# Operation               Analysis
+# Insertion at head/tail  O(1)
+# Deletion at head/tail   O(1)
+# Find                    O(n)

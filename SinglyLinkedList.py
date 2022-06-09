@@ -50,3 +50,10 @@ class SinglyLinkedList:
       cur = cur.next
     path += 'None'
     return path
+# Time complexity
+# n: # of nodes in a SLL
+# Operation               Analysis
+# Insertion at head       O(1)
+# Deletion at head        O(1)
+# Deletion by a value     O(n)
+# Find                    O(n)
