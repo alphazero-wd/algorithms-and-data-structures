@@ -24,7 +24,7 @@ We can see that nth fibonacci number is the sum of the two previous number. We c
 
 > [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/1_recursion/fibonacci.py)
 
-**Time complexity**: `O(n^2)`
+**Time complexity**: `O(2^n)`
 
 Proof:
 
