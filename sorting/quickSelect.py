@@ -8,23 +8,17 @@ def select(nums: List[int], left: int, right: int, k: int) -> int:
   else: return select(nums, pivotIndex + 1, right, k)
 
 def partition(nums: List[int], left: int, right: int) -> int:
-  i, j = left - 1, right + 1
-  while True:
-    i += 1 
-    while nums[i] < nums[left]:
-      i += 1
-      if i == right: break
-    j -= 1
-    while nums[j] > nums[left]:
-      j -= 1
-      if j == left: break
-    if i >= j: break
-    nums[i], nums[j] = nums[j], nums[i]
-  nums[left], nums[j] = nums[j], nums[left]
-  return j
+  mid = (left + right) // 2
+  pivot = nums[mid]
+  nums[mid], nums[right] = nums[right], nums[mid]
+  for i in range(left, right + 1):
+    if nums[i] < pivot:
+      nums[i], nums[left] = nums[left], nums[i] 
+      left += 1
+  nums[right], nums[left] = nums[left], nums[right]
+  return left
 
 def findKthLargest(nums: List[int], k: int) -> int:
   n = len(nums)
   k = n - k
   return select(nums, 0, n - 1, k)
-# Time complexity: O(n), worst case O(n^2)

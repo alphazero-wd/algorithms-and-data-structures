@@ -12,20 +12,14 @@ def sort(nums: List[int], low: int, high: int) -> List[int]:
   sort(nums, index + 1, high)
 
 def partition(nums: List[int], low: int, high: int) -> int:
-  i, j = low - 1, high + 1
-  while True:
-    i += 1 
-    while nums[i] < nums[low]:
+  mid = (low + high) // 2
+  pivot = nums[mid]
+  nums[high], nums[mid] = nums[mid], nums[high]
+  i = low 
+  for j in range(low, high):
+    if nums[j] < pivot:
+      nums[i], nums[j] = nums[j], nums[i]
       i += 1
-      if i == high: break
-    j -= 1
-    while nums[j] > nums[low]:
-      j -= 1
-      if j == low: break
-    if i >= j: break
-    nums[i], nums[j] = nums[j], nums[i]
-  nums[low], nums[j] = nums[j], nums[low]
-  return j
+  nums[i], nums[high] = nums[high], nums[i]
+  return i
 print(quickSort([3, 2, 1, 5, 6, 4]))
-# Time complexity: O(nlog2(n)), O(n^2) if we choose a bad pivot (but it rarely happens)
-# Space complexity: O(log2(n))
