@@ -137,6 +137,11 @@ Quicksort works by **partitioning** the element, which means we choose a **pivot
 
 **Time complexity**: `O(nlog(n))`, worst case `O(n^2)`
 
+_Proof_: Using master theorem for dividing functions, we have:
+
+        T(n) = 2T(n / 2) + n
+        T(n) = O(nlog(n))
+
 **Space complexity**: `O(log(n))`
 
 ### **Extra algorithm: Quick Select**
@@ -160,6 +165,11 @@ Quick select is an algorithm based on quicksort to find the kth smallest element
 
 **Time complexity**: `O(n)`, worst case: `O(n^2)`
 
+_Proof_: Using master theorem for dividing functions, we have:
+
+        T(n) = T(n / 2) + n
+        T(n) = O(n)
+
 **Space complexity**: `O(1)`
 
 ## **5. Merge Sort**
@@ -180,5 +190,10 @@ Merge Sort works by dividing an array into halves until it can be sorted, and me
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/sorting/mergeSort.py)
 
 **Time complexity**: `O(nlog(n))`
+
+_Proof_: Using master theorem for dividing functions, we have:
+
+        T(n) = 2T(n / 2) + n
+        T(n) = O(nlog(n))
 
 **Space complexity**: `O(n)`
