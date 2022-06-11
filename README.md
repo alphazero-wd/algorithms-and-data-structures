@@ -41,6 +41,13 @@ The idea is if `nums` is sorted, then we will find the middle element `nums[mid]
 
 **Time complexity**: `O(log(n))`
 
+## **3. Summary**
+
+| Algorithm     | Time complexity |
+| ------------- | --------------- |
+| Linear Search | `O(n)`          |
+| Binary Search | `O(log(n))`     |
+
 # Sorting
 
 > Problem: Given an array of numbers `nums`. Sort `nums` in ascending order.
@@ -197,3 +204,14 @@ _Proof_: Using master theorem for dividing functions, we have:
         T(n) = O(nlog(n))
 
 **Space complexity**: `O(n)`
+
+## **6. Summary**
+
+| Algorithm      | Time complexity | Space complexity |
+| -------------- | --------------- | ---------------- |
+| Bubble Sort    | `O(n)`          | `O(1)`           |
+| Selection Sort | `O(n^2)`        | `O(1)`           |
+| Insertion Sort | `O(n^2)`        | `O(1)`           |
+| Quick Sort     | `O(nlog(n))`    | `O(log(n))`      |
+| Quick Select   | `O(n)`          | `O(1)`           |
+| Merge Sort     | `O(nlog(n))`    | `O(n)`           |

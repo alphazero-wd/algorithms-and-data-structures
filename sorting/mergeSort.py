@@ -32,5 +32,3 @@ def merge(nums: List[int], low: int, high: int, mid: int, aux: List[int]) -> Non
     else:
       nums[i] = aux[right]
       right += 1
-# Time complexity: O(nlog2(n))
-# Space complexity: O(n) 

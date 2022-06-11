@@ -22,4 +22,3 @@ def partition(nums: List[int], low: int, high: int) -> int:
       i += 1
   nums[i], nums[high] = nums[high], nums[i]
   return i
-print(quickSort([3, 2, 1, 5, 6, 4]))

@@ -1,6 +1,5 @@
 from typing import List
 
-
 def bubbleSort(nums: List[int]) -> List[int]:
   n = len(nums)
   for i in range(n):
@@ -8,5 +7,3 @@ def bubbleSort(nums: List[int]) -> List[int]:
       if nums[i] < nums[j]:
         nums[i], nums[j] = nums[j], nums[i]
   return nums
-# Time complexity: O(n^2)
-# Space complexity: O(1)
