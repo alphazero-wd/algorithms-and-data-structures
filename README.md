@@ -4,7 +4,8 @@
 
 A **Hash table** (HT) is a **fixed size data structure** that stores key-value pairs. It provides a mapping from keys to values using a technique called **hashing**.
 
-![Simple hash table overview](https://f4-zpcloud.zdn.vn/8931703298542969541/2023738c4d1e8d40d40f.jpg)
+![Simple hash table overview](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/1280px-Hash_table_3_1_1_0_1_0_0_SP.svg.png)
+_A small phone book as a hash table_
 
 A HT contains two main methods: `get()` and `put()`. `get()` is used to retrieve data from the HT and `put()` is used to add a key-value pair into the HT. Both of these operations can have a time complexity of `O(1)`.
 
@@ -29,61 +30,31 @@ A hash function must satisfy three requirements as follows:
 2. _Efficiency_: It should be in `O(1)` time.
 3. _Uniform distribution_: It makes the most use of the array.
 
-## **3. Prime Number Hashing**
+The main problem with HT is to handle **collisions**. Collisions occur when two keys in a HT both hash to the same index in the array. To address this problem, there are several ways, but only _open addressing (probing)_ will be considered.
+In the image below, the keys "John Smith" and "Sandra Dee" both hash to 152, resulting in a collision.
 
-Prime numbers in hashing is important because the modulus division using prime number yields an array index in a distributed manner.
+![Hashing Collision](https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Hash_table_5_0_1_1_1_1_0_SP.svg/1024px-Hash_table_5_0_1_1_1_1_0_SP.svg.png)
+_Hash collision resolved by probing with linear probing._
 
-In this example, the hashing function is `H(x) = x % 11`
-We create two arrays of size 11, an array for keys, an array for values
-
-![Hash table of size 11, with all empty elements](https://f6-zpcloud.zdn.vn/1551328453689960363/e1b7aca39131516f0820.jpg)
-
-We are going to store keys as integers, values as strings
-
-      { key: 7,  value: "hi" }
-      { key: 24, value: "hello" }
-      { key: 42, value: "sunny" }
-      { key: 34, value: "weather" }
-
-We hash the keys to indexes in the array using a hash function `H(x)` we have just created. The hash results are as following:
-
-      7 % 11 = 7
-      24 % 11 = 2
-      42 % 11 = 9
-      34 % 11 = 1
-
-After all the key-value pairs have been inserted, the result of the HT is shown below.
-
-![Hash table after inserting the value pairs](https://f5-zpcloud.zdn.vn/4352543056116679770/c90401162b84ebdab295.jpg)
-
-Now, let's hash `{ key: 18, value: "wow" }`
-
-      18 % 11 = 7
-
-This is a problem because 7 already exists in the array at index 7. This problem is known as **collision**. Therefore, there are some strategies to handle collisions. One of which is called **probing**.
-
-## **4. Probing**
+## **4. Probing (Open addressing)**
 
 Probing works by finding the next available index in the array. There are two types of probing: _linear probing_ and _quadratic probing_.
 
 ### 1. Linear Probing
 
-Linear Probing works by finding the next available index in the array via **incremental trials**.
-For the case where `18` and `7` hashing to the same key, `18` would be hashed into `8` because that is the next empty spot.
+Linear Probing works by finding the next available index in the array via **incremental trials**
 
-![Hash table 1 after using linear probing](https://f7-zpcloud.zdn.vn/6930013798889742499/836ade47b1d5718b28c4.jpg)
+An example of sequence using linear probing is: `H(x) + 1, H(x) + 2, H(x) + 3, H(x) + k`.
 
-When we want to get the key `18`, we start at the original index `7` and keep moving to the next index until the key at that array index is `18`.
+In the image above, we resolved the collision by finding the next empty spot to insert "Sandra Dee" into index 153 in the array.
 
-The main disadvantage of linear probing is it creates _clusters_ because we would have to go through every element in the array to look for a key, which results in worst case being `O(n)` time.
+However, "Ted Baker" also hashes to index 153, we also find the next available index in the array which is 154 and insert there.
 
 ### 2. Quadratic Probing
 
-Quadratic Probing is a good way to address the cluster issues in linear probing, as it uses perfect square instead of incrementing by 1 each time, and this helps to make the most use of the array.
+Quadratic Probing is by taking the original hash index and adding successive values of an arbitrary quadratic polynomial until an open slot is found.
 
-> Below is the image of linear probing (on top) and quadratic probing (on bottom).
-
-![Linear probing (on top) and quadratic probing (on bottom)](https://f7-zpcloud.zdn.vn/3384153603141016818/c218d9116a83aaddf392.jpg)
+An example of sequence using quadratic probing is: `H(x) + 1^2, H(x) + 2^2, H(x) + 3^2, ..., H(x) + k^2`
 
 ### 3. Rehashing/Double-Hashing
 
@@ -95,7 +66,7 @@ Double-Hashing works by having a second hashing function that hashes the result 
 
 A commonly used double-hashing function is as following:
 
-                  H2(x) = R - (x % R) (R <= the size of the HT)
+                    H2(x) = R - (x % R) (R <= the size of the HT)
 
 ## 4. Implementation
 
