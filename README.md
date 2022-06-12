@@ -2,21 +2,21 @@
 
 A tree is a data structure composed of nodes with children nodes. The top/first node is called the _root_.
 
-![Tree](https://media.geeksforgeeks.org/wp-content/cdn-uploads/20201129105858/Tree-Basic-Terminology.png)
+![Tree](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Tree_%28computer_science%29.svg/330px-Tree_%28computer_science%29.svg.png)
 
 However, the most commonly used types of trees are _Binary Tree_ and _Binary Search Tree_. We will be discussing different ways of traversing a tree and
 performing some operations on a Binary Search Tree efficiently.
 
 **Some terminologies used in trees** (see the image above as an example):
 
-- Root: The first/top node in the tree e.g. node `1`. NOTE: A tree only has **one root**.
-- Leaf node: a node that has no children e.g. node `6`, `11`.
+- Root: The first/top node in the tree e.g. node `2` (circled in red). NOTE: A tree only has **one root**.
+- Leaf node: a node that has no children e.g. node `5`, `11`, `4`.
 
 ## Binary Trees
 
 A binary tree is a tree where every node holds a value `val` and has `left` and `right` children nodes.
 
-![Binary Tree](https://f4-zpcloud.zdn.vn/6649685002220047165/90be833529ace9f2b0bd.jpg)
+![Binary Tree](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Binary_tree_v2.svg/800px-Binary_tree_v2.svg.png)
 
 From the properties mentioned above, we have a `TreeNode` class as following:
 
@@ -38,21 +38,31 @@ class BinaryTree:
 
 ### 1. Tree Traversal
 
-1. Inorder Traversal (visit nodes in the following order: left, root, right)
+![Tree Traversal](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Sorted_binary_tree_ALL_RGB.svg/1024px-Sorted_binary_tree_ALL_RGB.svg.png)
+_Pre-order (node visited at position red):_
+<br>
+_In-order (node visited at position green):_
+<br>
+_Post-order (node visited at position blue):_
 
-![Inorder Traversal](https://f4-zpcloud.zdn.vn/1033149422736303716/babe959b4702875cde13.jpg)
+<br>
 
-2. Preorder Traversal (visit nodes in the following order: root, left, right)
+1. **Inorder Traversal** (visit nodes in the following order: left, root, right)
 
-![Preorder Traversal](https://f7-zpcloud.zdn.vn/2330802758405483801/9f882fe8ff713f2f6660.jpg)
+   > In the image, the order would be `F, B, A, D, C, E, G, I, H`
 
-3. Postorder Traversal (visit nodes in the following order: left, right, root)
+2. **Preorder Traversal** (visit nodes in the following order: root, left, right)
 
-![Postorder Traversal](https://f7-zpcloud.zdn.vn/3997607245947337510/89c333fef66736396f76.jpg)
+   > In the image, the order would be `A, B, C, D, E, F, G, H, I`
 
-4. Level-order Traversal is also known as _breadth-first search_ (BFS) (visit nodes level by level)
+3. **Postorder Traversal** (visit nodes in the following order: left, right, root)
 
-![Level-order Traversal](https://f4-zpcloud.zdn.vn/3688770531550857192/5b3b8b324bab8bf5d2ba.jpg)
+   > In the image, the order would be `A, C, E, D, B, H, I, G, F`.
+
+4. **Level-order Traversal** is also known as _breadth-first search_ (BFS) (visit nodes level by level)
+
+   > In the image below, the order would be `A, C, E, D, B, H, I, G, F`.
+   > <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Sorted_binary_tree_breadth-first_traversal.svg/1280px-Sorted_binary_tree_breadth-first_traversal.svg.png">
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/6_trees/BinaryTree.py)
 
@@ -64,9 +74,9 @@ A Binary Search Tree (BST) is a binary tree where the left child is smaller than
 The structure of a **balanced** BST (the first image) would enable insertion, search and deletion within `O(log(n))` time.
 If the BST is **unbalanced** (the second image), it is no longer efficient and the time it takes for the operations above in worst case is `O(n)`.
 
-![Balanced BST](https://www.baeldung.com/wp-content/uploads/sites/4/2021/12/binary-search-tree-1024x580.jpg)
+![Balanced BST](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Binary_search_tree.svg/1024px-Binary_search_tree.svg.png)
 
-![Unbalanced BST](https://f7-zpcloud.zdn.vn/5699400827380355363/ad5f23c5d45e14004d4f.jpg)
+![Unbalanced BST](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Unbalanced_binary_tree.svg/1024px-Unbalanced_binary_tree.svg.png)
 
 Because a BST is also a binary tree, so we just need to inherit all the properties of the class `BinaryTree` we have created above:
 
@@ -81,8 +91,6 @@ class BST(BinaryTree):
 **Idea**:
 
 If the value we are searching for is less than the root value, we search on the left. Otherwise, we search on the right until we visit a node whose value is equal to the value we are looking for.
-
-![Search Visualization](https://miro.medium.com/max/1280/1*jm9XjZAplj5Sb6MRpMa_-Q.gif)
 
 **Algorithm**:
 
@@ -100,8 +108,6 @@ If the value we are searching for is less than the root value, we search on the 
 **Idea**:
 
 Same as search, if the root value is greater than the value of the node we want to insert then we traverse the left. Otherwise we look on the right subtree until we reach a `null` node and insert it.
-
-![Insertion Visualization](https://blog.penjee.com/wp-content/uploads/2015/11/binary-search-tree-insertion-animation.gif)
 
 **Algorithm**:
 
@@ -125,20 +131,20 @@ Same as search, if the root value is greater than the value of the node we want 
 
 **Idea**:
 
+![Visualization](https://upload.wikimedia.org/wikipedia/commons/f/f3/Binary_search_tree_deletion_illustration.png)
+_Binary search tree special cases deletion illustration._
+
 We do exactly the same as search until we find the node we want to delete.
+Suppose node `z` is the node we want to delete:
 Then there are three cases that can happen:
 
-- The node is a leaf node. This is the easiest case as we just set that node to `null`
-- The node has either left or right child. This is still easy as we just set that node to either `left` or `right`, whichever one is not `null`
-- The node has both left and right child. This is a very tricky case. We can do the following:
+- `z` is a leaf node. Set that node to `null`
+- `z` has either left or right child. Set that node to either `left` or `right`, whichever one is not `null` (case a and b)
+- `z` has both left and right child (case c and d). We can do the following:
 
-  1. Find either the maximum node on the left or the minimum on the right
-  2. Replace the node we want to delete with the node we found in step 1
-  3. Delete the node we found in step 1, which falls into case 1 as the minimum node on the right is always a leaf node.
-
-  _See the image below for case 3 visualization_
-
-  ![Visualization](https://media.geeksforgeeks.org/wp-content/uploads/deletion-in-binary-tree.png)
+  1. Find either the maximum node on the left or the minimum on the right. In this case, we find the minimum node on the right `y`
+  2. Replace `z` with `y`
+  3. Delete `y`, which falls into either 2 cases above like deleting `z`.
 
 **Algorithm**:
 
