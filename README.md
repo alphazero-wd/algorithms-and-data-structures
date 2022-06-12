@@ -6,7 +6,7 @@
 
 A Singly Linked List (SLL) is a **data structure** that consists of nodes where each node has a value and a pointer (reference) to the next node.
 
-![Singly Linked List](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2013/03/Linkedlist.png)
+![Singly Linked List](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/1920px-Singly-linked-list.svg.png)
 
 **Some terminologies used in the linked list** (see the image above):
 
@@ -90,7 +90,7 @@ class SLL:
 
 A Doubly Linked List (DLL) is the pretty much the same as a SLL. However, a node in a DLL also has a **pointer to the previous node** (see the image below).
 
-![Doubly Linked List](https://media.geeksforgeeks.org/wp-content/cdn-uploads/gq/2014/03/DLL1.png)
+![Doubly Linked List](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Doubly-linked-list.svg/1920px-Doubly-linked-list.svg.png)
 
 ### **2. Implementation**
 
