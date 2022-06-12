@@ -8,8 +8,6 @@
 
 Scan through every element in `nums` and see if a number in `nums` is equal to `target`
 
-![Visualization](https://icancodeit.files.wordpress.com/2019/08/linear-search-algorithm.gif)
-
 **Algorithm**:
 
 1. Scan through `nums`
@@ -28,7 +26,7 @@ We can see in the problem statement that we are given a **sorted** array. Theref
 
 The idea is if `nums` is sorted, then we will find the middle element `nums[mid]` to see if it is the `target`. If `nums[mid]` is not `target`, we can just cut off half of `nums` and only search on the other half. This reduces the time complexity significantly.
 
-![Visualization](https://d18l82el6cdm1i.cloudfront.net/uploads/bePceUMnSG-binary_search_gif.gif)
+![Visualization](https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Binary_Search_Depiction.svg/1920px-Binary_Search_Depiction.svg.png)
 
 **Algorithm**:
 
@@ -84,7 +82,7 @@ Bubble Sort is the simplest sorting algorithm among all. It works by swapping an
 
 Selection Sort works by finding the minimum element after every element and swap them
 
-![Visualization](https://i2.wp.com/algorithms.tutorialhorizon.com/files/2019/01/Selection-Sort-Gif.gif?ssl=1)
+![Visualization](https://upload.wikimedia.org/wikipedia/commons/9/94/Selection-Sort-Animation.gif)
 
 **Algorithm**:
 
