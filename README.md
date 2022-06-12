@@ -85,7 +85,7 @@ _Proof:_
 
 See the example of `fib(5)`:
 
-![fib(5)](https://i.stack.imgur.com/QVSdv.png)
+![fib(5)](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fibonacci_Tree_5.svg/1280px-Fibonacci_Tree_5.svg.png)
 
 ### **2. Pascal Triangle: Compute the value of a cell at position `(row, col)` starting at 0**
 
