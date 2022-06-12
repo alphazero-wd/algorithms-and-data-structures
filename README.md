@@ -7,7 +7,7 @@
 A _heap_ is a **tree-like data structure** in which the parent is greater than its children (if _max-heap_) or less than its children (if _min-heap_).
 A heap is an important data structure that returns the lowest or highest element in `O(1)` time. This property of heap is useful for sorting data (heapsort) in `O(nlog(n))` time.
 
-![Heap](https://media.geeksforgeeks.org/wp-content/cdn-uploads/MinHeapAndMaxHeap.png)
+![Heap](https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Min-heap.png/330px-Min-heap.png)
 
 There are many types of heaps that have different number of children. Only **binary heaps** will be considered for simplicity.
 
@@ -25,8 +25,6 @@ Unlike a tree, we use an **array** to represent a heap instead of pointers to ch
 | Parent      | `k / 2`  |
 | Left Child  |   `2k`   |
 | Right Child | `2k + 1` |
-
-![Heap Relationship](https://vimentor.com/storage/upload/ckeditor/dragndrop/files/image-20180404093135-13.png)
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/7_heaps/Heap.py)
 
@@ -62,14 +60,40 @@ We will only consider the case in a **max-heap** as it is almost similar in a **
 3. Insert an element into a max heap:
 
    1. Insert the element at the end of the array and call it `last`.
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Heap_add_step1.svg/225px-Heap_add_step1.svg.png" >
+
+      _Suppose we want to insert 15 into the heap_
+
    2. Perform `swim(n)`
+
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Heap_add_step2.svg/225px-Heap_add_step2.svg.png">
+
+      The heap property has been violated 15 > 8 so we swap 8 with 15
+
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Heap_add_step3.svg/225px-Heap_add_step3.svg.png">
+
+      15 > 11, swap 15 with 11 which is now a valid max-heap.
 
 4. Delete the max element from a max heap:
 
    1. Call the first/max element `max` and the last element in the array `last`
-   2. Swap `max` with `last`, `max` is now at the end of the array
-   3. Remove `max` by popping the array
-   4. Perform `sink(1)`
+
+      Suppose we have a heap as before and we want to delete the max element which is 11 from the heap.
+
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Heap_add_step3.svg/225px-Heap_add_step3.svg.png">
+
+   2. Swap `max` with `last`, `max` is now at the end of the array and remove `max` by popping the array
+
+      We swap 11 with 4 and remove the 11
+
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Heap_remove_step1.svg/225px-Heap_remove_step1.svg.png">
+
+   3. Perform `sink(1)`
+
+      Now the heap property is violated so we swap 8 with 4. This is now a valid max-heap.
+
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Heap_remove_step2.svg/225px-Heap_remove_step2.svg.png">
 
 5. Get the max element in a max-heap: Simply returns `array[1]`
 
@@ -93,7 +117,9 @@ We will only consider the case in a **max-heap** as it is almost similar in a **
 
 We can construct a max-heap from the array we want to sort `nums` (in-place). See the visualization below:
 
-![Heapsort Visualization](https://algs4.cs.princeton.edu/24pq/images/heapsort-trace.png)
+> Convert the array `nums` which stores a complete binary tree with `n` nodes to a max-heap by repeatedly using `sink` function in a bottom-up manner. The array elements indexed by `floor(n/2) + 1, floor(n/2) + 2, ..., n` are all leaves for the tree (assuming that indices start at 1) - thus each is a one-element heap, and does not need to be sunk.
+
+![Heapsort Visualization](https://upload.wikimedia.org/wikipedia/commons/4/4d/Heapsort-example.gif)
 
 **Algorithm**:
 
