@@ -12,8 +12,7 @@ We add elements on top of the stack (push), while also removing elements from th
 These operations can be done in `O(1)` time using a stack.
 
 > We can think about a stack of plates, to get the bottom plate, you would have to remove all the top ones first.
-
-![Stack, LIFO](https://f4-zpcloud.zdn.vn/5247225754251717169/637a1e513acdfa93a3dc.jpg)
+> <img src=https://upload.wikimedia.org/wikipedia/commons/1/19/Tallrik_-_Ystad-2018.jpg alt="Stack of plates" />
 
 ### 2. Implementation
 
@@ -44,6 +43,8 @@ The simplest way to implement a stack is to use a dynamic array i.e. list
 - We have to keep popping `k` times until `k = n`. In worst case, we might have to pop the entire stack.
 - Time complexity: `O(n)`
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Lifo_stack.svg/1280px-Lifo_stack.svg.png" alt="Stack Operation">
+
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/4_stacks-and-queues/Stack.py)
 
 ### 3. Summary
@@ -64,8 +65,11 @@ The simplest way to implement a stack is to use a dynamic array i.e. list
    These operations can be done in `O(1)` time using a queue.
 
 > We can think about a queue of people, the first people of the queue is removed, while new people waiting in the queue stand at the back of the queue.
+> <img src="https://images.pexels.com/photos/761295/pexels-photo-761295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
 
-![Queue, FIFO](https://f5-zpcloud.zdn.vn/7433129130322213589/809d113235aef5f0acbf.jpg)
+<br>
+
+![Queue, FIFO](https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Data_Queue.svg/1280px-Data_Queue.svg.png)
 
 ### 2. Implementation
 
