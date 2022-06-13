@@ -6,13 +6,13 @@ class Heap:
         self.items: List[int] = []
 
     def parent_index(self, i):
-        return i // 2
+        return (i - 1) // 2
 
     def left_child_index(self, i):
-        return 2 * i
+        return 2 * i + 1
 
     def right_child_index(self, i):
-        return 2 * i + 1
+        return 2 * i + 2
 
     def parent(self, i):
         return self.items[self.parent_index(i)]
