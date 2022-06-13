@@ -73,6 +73,15 @@ _A sample graph_
   <tbody>
 </table>
 
+> Throughout the discussion, adjacency list representation of graphs will be used because it is much more efficient in terms of time and space complexity for searching.
+
+```py
+from typing import List, Dict
+class Graph:
+  def __init__(self) -> None:
+    self.adj_list: Dict[int, List[List[int]]] = {}
+```
+
 2. Adjacency Matrix Representation: by using a 2D array. If there is an edge between vertex `u` and `v`, we label `matrix[u][v] = 1`
 
 <div>
@@ -95,3 +104,144 @@ An undirected graph is a graph where there are **no directions** between edges.
 > An example of which are the roads where a person can travel from road A to road B, while also can travel from road B to road A.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Undirected.svg/1024px-Undirected.svg.png" width="25%" />
+
+**Add Edge**:
+
+Suppose we have an adjacency list `adjList` and we want to add an edge between vertex `u` and `v` to `adjList`.
+
+1.  If either `u` or `v` is not in `adjList`, we will initialize `adjList[u]` or `adjList[v]` to an empty list
+2.  Otherwise, we add `u` to `adjList[v]` to indicate a direction from `v` to `u`, and add `v` to `adjList[u]` to indicate a direction from `u` to `v`.
+
+[See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/UndirectedGraph.py)
+
+## Directed Graphs (Digraphs)
+
+A directed graph is a graph where there are **directions** between edges.
+
+> An example of which is course scheduling where if you want to take a course, you must finish prerequisites of that course first. Similarly, if you want to complete the prerequisites of that course, you would have to finish the prerequisites of prerequisites of that course.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Directed.svg/1024px-Directed.svg.png" width="25%" />
+
+**Add Edge**:
+
+Suppose we have an adjacency list `adjList` and we want to add an edge **from vertex `u` to `v`** to `adjList`.
+
+1.  Same as undirected graph, if either `u` or `v` is not in `adjList`, we will initialize `adjList[u]` or `adjList[v]` to an empty list
+2.  Otherwise, we only add `v` to `adjList[u]` to indicate there is an only direction from `u` to `v`.
+
+[See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/DirectedGraph.py)
+
+## Graph Searching Algorithm
+
+### 1. Depth-first Search (DFS)
+
+The first basic graph searching algorithm is depth-first search. As the name suggests, the algorithm starts at an arbitrary vertex in a graph and explores as far as possible along each branch before backtracking. DFS works for both undirected and directed graph.
+
+![Visualization](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)
+
+The only problem in DFS is to deal with cycle as it can result in an infinite loop. Therefore, we need to use a **set** `visited` to keep track of visited nodes so we do not visit it one more time.
+
+**Algorithm**:
+
+1. Start at an arbitrary node and call it `u`.
+2. Add `u` to `visited`
+3. Check every `neighbor` of `u`. If `neighbor` is not in the `visited` set, recursively visit `neighbor`
+
+**Time complexity**: `O(V + E)`
+
+### 2. Breadth-first Search (BFS)
+
+Breadth-first search is another graph searching algorithm. Unlike DFS, it explores every vertex at the present depth instead of visiting nodes at the next depth level.
+DFS uses the underlying call stack, while BFS uses a queue. We also need a `visited` set to keep track of explored vertices.
+
+![Visualization](https://upload.wikimedia.org/wikipedia/commons/4/46/Animated_BFS.gif)
+
+**Algorithm**:
+
+1. Start at an arbitrary node and call it `u`.
+2. Initialize a queue `q` and add `u` to `q`.
+3. Add `u` to `visited`
+4. If `q` is not empty
+
+   1. Dequeue `q` to get a vertex `v`
+   2. Add `v` to `visited`
+   3. Check every `neighbor` of `v`. If `neighbor` is not in `visited`, add `neighbor` to `q`
+
+**Time complexity**: `O(V + E)`
+
+[See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/GraphSearch.py)
+
+## 3. Connected Components (CCs)
+
+### 1. Definition
+
+A **connected component (CC)** is a maximal set of connected vertices.
+
+![CC](https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Pseudoforest.svg/360px-Pseudoforest.svg.png)
+
+_A graph with 3 connected components_
+
+### 2. Implementation
+
+This is a problem where DFS is used to count the number of CCs in a graph. We check every single vertex in a graph, if it is not visited then visit all the neighbors of that vertex.
+After visiting all the neighbors in a CC, we add 1 to the total number of CCs. Then visit the next CC.
+
+**Algorithm**:
+
+1. Initialize `count` to 0, which is the number of CCs in a graph.
+2. Go through every vertex `u` in `adjList`, if `u` is not in `visited`, call `dfs(u)`
+3. Increment `count` by 1 after the DFS
+4. Repeat step 2 and 3
+
+## 4. Topological Sort
+
+### 1. Definition
+
+A topological sort or topological ordering of a **directed acyclic graph (DAG)** (a directed graph with no cycle) is a linear ordering of its vertices such that for every directed edge `uv` from vertex `u` to vertex `v`, `u` comes before `v` in the ordering.
+
+> Suppose each vertex is each course that has to be completed. For example, if we want to finish course 9 then we first have to complete course 8 and course 11. Similarly, if we want to finish course 8 and 11, we would have to complete course 5, 7 and 3. Same applies for other courses.
+> <br>
+> Therefore, the topological order would be `[5, 7, 3, 11, 8, 2, 9, 10]`. <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Directed_acyclic_graph_2.svg/458px-Directed_acyclic_graph_2.svg.png" width="25%" > <br> _A sample graph_
+
+### 2. Implementation
+
+We do the same thing like we do in DFS. Except for the fact we will need a **stack** to store the topological order of a graph and reverse it.
+
+**Algorithm**:
+
+1. Initialize a stack `st` to store the topological ordering
+2. Check every vertex `u` in the graph. If `u` not in `visited`, call `dfs(u)`
+3. At the end of `dfs(u)`, push `u` to `st`
+4. Reverse `st` to get the topological order.
+
+[See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/TopologicalSort.py)
+
+**Time complexity**: `O(V + E)`
+
+## Strongly Connected Components (SCCs)
+
+### 1. Definition
+
+A **strongly connected component (SCC)** is a maximal set of vertices in a directed graph where at any two vertices `u` and `v`, there is a directed path from `u` to `v` and from `v` to `u`.
+
+<img width="50%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Scc-1.svg/330px-Scc-1.svg.png">
+
+_There are 3 SCCs highlighted_
+
+**Idea**: Kosaraju-Sharir Algorithm
+
+- SCCs in the original graph `G` are the same as in the reversed graph `Gr`.
+- Compute the topological order of `Gr`
+- Run DFS on the original graph `G`
+
+**Algorithm**:
+
+1. Initialize a variable `count` to compute the number of SCCs in a graph.
+1. Reverse (transpose) the graph `G` to get the reversed graph `Gr`
+1. Compute the topological order `rev_topo` of `Gr`
+1. Check every vertex `u` in the `rev_topo`. If `u` is not in `visited`, call `dfs(u)`
+1. Increment `count` by 1 after a traversal.
+
+[See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/KosarajuSharirSCC.py)
+
+**Time complexity**: `O(V + E)`
