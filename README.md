@@ -218,7 +218,7 @@ We do the same thing like we do in DFS. Except for the fact we will need a **sta
 
 **Time complexity**: `O(V + E)`
 
-## Strongly Connected Components (SCCs)
+## 5. Strongly Connected Components (SCCs)
 
 ### 1. Definition
 
@@ -245,3 +245,25 @@ _There are 3 SCCs highlighted_
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/KosarajuSharirSCC.py)
 
 **Time complexity**: `O(V + E)`
+
+## 6. Dijkstra Algorithm
+
+Dijkstra Algorithm is used to find the shortest path from the source vertex `s` to other vertices in a graph.
+
+**Algorithm**:
+
+1. Initialize a hash map `dist` which stores keys as vertices and values as the distance from `s` to any vertex in the graph, and a set `Q`.
+2. Set `dist[s]` to 0 and `dist[other nodes]` to infinity.
+3. Add all the vertices in the graph to `Q`
+4. If `Q` is not empty, find the vertex `u` whose distance from `s` is the minimum and remove `u` from `Q`
+5. Check every `neighbor` of `u`. Update the shortest path from `u` to `neighbor` if the shortest path to `neighbor` is greater than the sum of shortest path to `u` and the distance between `u` and `neighbor`: `dist[neighbor] = min(dist[neighbor], dist[u] + weight(u, neighbor))`
+
+![Dijkstra Algorithm](https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif)
+
+**Time complexity**: `O(V^2 + E)`
+
+> The time complexity can be optimized using a min-heap because getting the minimum vertex will take `O(log(n))` only. Therefore, the total time complexity for the algorithm is `O((E + V) * log(V))`
+
+[See the implementation using set](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/Dijkstra.py)
+
+[See the implementation using min-heap](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/8_graphs/DijkstraHeap.py)
