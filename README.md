@@ -28,9 +28,9 @@ There are two main types of graphs: **undirected graph** (on the left) and **dir
 - _Vertex_ (`V` for Big-O analysis): In the image above, vertices are A, B, C, D, E.
 - _Edge_ (`E` for Big-O analysis) is a connection i.e. line between any two vertices e.g. A-B, B-C, D-E
 - _Degree_ of vertex is the number of edges on a vertex e.g. In the undirected graph, node C has a degree of 3 as there are 3 edges on C.
-- _Sparse Graph_ is a graph where there are **a few connections** between vertices (see the image below).
+- _Sparse Graph_ is a graph where there are **a few connections** between vertices.
 
-- _Dense Graph_ is a graph where there are **a lot of connections** between vertices (see the image below).
+- _Dense Graph_ is a graph where there are **a lot of connections** between vertices.
 
 - _Cycle Graph_ is a **directed graph** where there is a vertex that travels from and back to itself.
 
@@ -50,17 +50,33 @@ There are different ways to represent graphs. Two most common ways of doing this
 
 _A sample graph_
 
-| The graph pictured above has this adjacency list representation: |             |      |
-| ---------------------------------------------------------------- | ----------- | ---- |
-| a                                                                | adjacent to | b, c |
-| b                                                                | adjacent to | a, c |
-| c                                                                | adjacent to | a, b |
+<table>
+  <thead>
+    <th colspan="3">The graph pictured above has this adjacency list representation:</th>
+  </thead>
+  <tbody>
+  <tr>
+    <td>a</td>
+    <td>adjacent to</td>
+    <td>b, c</td>
+  </tr>
+  <tr>
+    <td>b</td>
+    <td>adjacent to</td>
+    <td>a, c</td>
+  </tr>
+  <tr>
+    <td>c</td>
+    <td>adjacent to</td>
+    <td>a, b</td>
+  </tr>
+  <tbody>
+</table>
 
 2. Adjacency Matrix Representation: by using a 2D array. If there is an edge between vertex `u` and `v`, we label `matrix[u][v] = 1`
 
-<div style="display: flex; justify-content: center; align-items: center">
 <div>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/6n-graph2.svg/300px-6n-graph2.svg.png" width="75%" />
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/6n-graph2.svg/300px-6n-graph2.svg.png" width="25%" />
 
 _A sample graph_
 
@@ -71,7 +87,6 @@ _A sample graph_
 _Coordinates are 1-6_
 
 </div>
-</div>
 
 ## Undirected Graphs
 
@@ -79,6 +94,4 @@ An undirected graph is a graph where there are **no directions** between edges.
 
 > An example of which are the roads where a person can travel from road A to road B, while also can travel from road B to road A.
 
-<div style="text-align: center">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Undirected.svg/1024px-Undirected.svg.png" width="30%" />
-</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Undirected.svg/1024px-Undirected.svg.png" width="25%" />
