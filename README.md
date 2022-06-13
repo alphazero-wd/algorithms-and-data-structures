@@ -13,9 +13,9 @@ There are many types of heaps that have different number of children. Only **bin
 
 Unlike a tree, we use an **array** to represent a heap instead of pointers to children nodes (see the image below). We can easily calculate the parent, left child and right child of a node in a binary heap.
 
-![Heap indices](https://hyosup0513.github.io/public/images/2heap1.PNG)
+![Heap indices](https://upload.wikimedia.org/wikipedia/commons/c/c4/Binary_Heap_with_Array_Implementation.JPG)
 
-> Note that the first element in a heap starts at 1. This is because it is easier to compute the indices of the parent, left and right children of an element in a heap.
+> The first element in a heap can either start at 0. But for simplicity, the first element's index starts at 1 in the array.
 
 ### 2. Binary Heap Array Index Structure
 
