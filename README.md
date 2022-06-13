@@ -41,8 +41,6 @@ We will only consider the case in a **max-heap** as it is almost similar in a **
 
    **Time complexity**: `O(log(n))`
 
-   ![Insertion in a Max Heap](https://cdn-media-1.freecodecamp.org/images/v7W4gtqZZ4vknoz9-Qj28CuXtviStsYYXAS8)
-
 2. Sink:
 
    4. If `last < left_child(last)`, compare `left_child(last)` and `right_child(last)`
@@ -54,8 +52,6 @@ We will only consider the case in a **max-heap** as it is almost similar in a **
    6. Return `max`
 
    **Time complexity**: `O(log(n))`
-
-   ![Deletion in a Heap](https://media.hoclaptrinh.vn/images/cau-truc-du-lieu-heap5c3465ea021c3.gif)
 
 3. Insert an element into a max heap:
 
