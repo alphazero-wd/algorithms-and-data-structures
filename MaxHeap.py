@@ -6,7 +6,7 @@ class MaxHeap(Heap):
         super().__init__()
 
     def swim(self, i: int) -> None:
-        while self.parent_index(i) > 0 and self.items[self.parent_index(i)] < self.items[i]:
+        while self.parent_index(i) >= 0 and self.parent(i) < self.items[i]:
             self.items[self.parent_index(
                 i)], self.items[i] = self.items[i], self.parent(i)
             i = self.parent_index(i)
@@ -26,7 +26,7 @@ class MaxHeap(Heap):
         self.swim(self.size() - 1)
 
     def del_max(self) -> int:
-        self.items[1], self.items[-1] = self.items[-1], self.items[1]
+        self.items[0], self.items[-1] = self.items[-1], self.items[0]
         max_item = self.items.pop()
-        self.sink(1)
+        self.sink(0)
         return max_item

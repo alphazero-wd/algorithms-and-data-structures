@@ -3,7 +3,7 @@ from typing import List, Optional
 
 class Heap:
     def __init__(self) -> None:
-        self.items: List[int] = [None]
+        self.items: List[int] = []
 
     def parent_index(self, i):
         return i // 2
@@ -27,8 +27,8 @@ class Heap:
         return len(self.items)
 
     def is_empty(self) -> bool:
-        return self.size() <= 1
+        return self.size() <= 0
 
     def peek(self) -> Optional[int]:
         if not self.is_empty():
-            return self.items[1]
+            return self.items[0]

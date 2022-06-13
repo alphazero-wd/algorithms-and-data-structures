@@ -15,16 +15,14 @@ Unlike a tree, we use an **array** to represent a heap instead of pointers to ch
 
 ![Heap indices](https://upload.wikimedia.org/wikipedia/commons/c/c4/Binary_Heap_with_Array_Implementation.JPG)
 
-> The first element in a heap can either start at 0. But for simplicity, the first element's index starts at 1 in the array.
-
 ### 2. Binary Heap Array Index Structure
 
-| Node        |  Index   |
-| ----------- | :------: |
-| Itself      |   `k`    |
-| Parent      | `k / 2`  |
-| Left Child  |   `2k`   |
-| Right Child | `2k + 1` |
+| Node        |     Index     |
+| ----------- | :-----------: |
+| Itself      |      `k`      |
+| Parent      | `(k - 1) / 2` |
+| Left Child  |   `2k + 1`    |
+| Right Child |   `2k + 2`    |
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/7_heaps/Heap.py)
 
@@ -85,13 +83,13 @@ We will only consider the case in a **max-heap** as it is almost similar in a **
 
        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Heap_remove_step1.svg/225px-Heap_remove_step1.svg.png">
 
-   3. Perform `sink(1)`
+   3. Perform `sink(0)`
 
       Now the heap property is violated so we swap 8 with 4. This is now a valid max-heap.
 
        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Heap_remove_step2.svg/225px-Heap_remove_step2.svg.png">
 
-5. Get the max element in a max-heap: Simply returns `array[1]`
+5. Get the max element in a max-heap: Simply returns `array[0]`
 
    **Time complexity**: `O(1)`
 
@@ -121,13 +119,13 @@ We can construct a max-heap from the array we want to sort `nums` (in-place). Se
 
 1. Construct a max-heap from `nums`
 
-   1. Have `k` start at `parent(n)`, i.e. `n / 2` and move down by 1 until `k = 1`
+   1. Have `k` start at `parent(n)`, i.e. `(n - 1) / 2` and move down by 1 until `k = 0`
    2. Perform `sink(k, n)`
 
 2. Perform heapsort
-   1. If `n > 1` then
-      1. Swap `nums[1]` with `nums[n]` and decrement `n` by 1
-      2. Perform `sink(1, n)`
+   1. If `n > 0` then
+      1. Swap `nums[0]` with `nums[n - 1]` and decrement `n` by 1
+      2. Perform `sink(0, n - 1)`
    2. Repeat step 1
 
 **Time complexity**: `O(nlog(n))`

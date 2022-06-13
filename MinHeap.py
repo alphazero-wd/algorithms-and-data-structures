@@ -6,8 +6,9 @@ class MinHeap(Heap):
         super().__init__()
 
     def swim(self, i: int) -> None:
-        while self.parent_index(i) > 0 and self.items[i // 2] > self.items[i]:
-            self.items[i // 2], self.items[i] = self.items[i], self.parent(i)
+        while self.parent_index(i) >= 0 and self.parent(i) > self.items[i]:
+            self.items[self.parent_index(
+                i)], self.items[i] = self.items[i], self.parent(i)
             i = self.parent_index(i)
 
     def sink(self, i: int) -> None:
@@ -25,7 +26,7 @@ class MinHeap(Heap):
         self.swim(self.size() - 1)
 
     def del_min(self) -> int:
-        self.items[1], self.items[-1] = self.items[-1], self.items[1]
+        self.items[0], self.items[-1] = self.items[-1], self.items[0]
         min_item = self.items.pop()
-        self.sink(1)
+        self.sink(0)
         return min_item
