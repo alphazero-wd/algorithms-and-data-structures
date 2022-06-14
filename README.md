@@ -36,7 +36,7 @@ def fib(n, memo={}):
   if n in memo: return memo[n]
   if n == 0: return 0
   if n == 1: return 1
-  memo[n] = solve(n - 1, memo) + solve(n - 2, memo)
+  memo[n] = fib(n - 1, memo) + fib(n - 2, memo)
   return memo[n]
 ```
 
@@ -292,7 +292,7 @@ Based on two cases above, we can form a recursive function as following:
 def coin_change(coins, target):
   def solve(i, target):
     if i < 0 or target == 0: return 1
-    if target < 0 or (i < 1 and target > 0) return 0
+    if target < 0 or (i < 1 and target > 0): return 0
     return solve(i - 1, target) + solve(i, target - coins[i])
   return solve(coins.length - 1, target)
 ```
