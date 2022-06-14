@@ -321,3 +321,85 @@ def coin_change(coins, target):
 **Space complexity**: `O(n * target)`
 
 > **Follow up**: Can you come up with a solution in `O(target)` space?
+
+## 5. Edit Distance (Levenshtein Distance)
+
+> Problem ([source: Leetcode](https://leetcode.com/problems/edit-distance/))
+>
+> Given two strings `word1` and `word2`, return _the minimum number of operations required to convert `word1` to `word2`._ <br> <br>
+> You have the following three operations permitted on a word:
+>
+> - Insert a character
+> - Delete a character
+> - Replace a character
+
+    Input: word1 = "horse", word2 = "ros"
+    Output: 3
+    Explanation:
+    horse -> rorse (replace 'h' with 'r')
+    rorse -> rose (remove 'r')
+    rose -> ros (remove 'e')
+
+**Optimal Substructure**:
+
+Suppose the length of `word1` and `word2` are `m` and `n` respectively.
+
+1. If `word1[m - 1] = word2[n - 1]` then do nothing.
+2. Otherwise, consider these cases recursively and see which decision gives the minimum:
+
+   1. Insert: for `m` and `n - 1`
+   2. Delete: for `m` and `n - 1`
+   3. Replace: for `m - 1` and `n - 1`
+
+**Algorithm**:
+
+1. If `m = 0` return `n`
+2. Similarly, if `n = 0` return `m`
+3. If `word1[m - 1] = word2[n - 1]`, there is nothing to do, so skip by calling `solve(word1[0, m - 2], word2[0, n - 2]`)
+4. Otherwise, return `1 + min(solve(word1, word2[0, n - 2], solve(word1[0, m - 2], word2), solve(word1[0, m - 2], word2[0, n - 2]))`
+
+**Implementation**:
+
+```py
+def edit_distance(word1, word2):
+  m, n = len(word1), len(word2)
+  if m == 0: return n
+  if n == 0: return m
+  if word1[m - 1] == word2[n - 1]:
+    return edit_distance(word1[:m - 1], word2[:n - 1])
+  else:
+    return 1 + min(
+      edit_distance(word1, word2[:n - 1]),
+      edit_distance(word1[:m - 1], word2),
+      edit_distance(word1[:m - 1], word2[:n - 1]),
+    )
+```
+
+**Time complexity**: `O(3^m)`
+
+By using DP, we can optimize the time complexity down to `O(m * n)`:
+
+```py
+def edit_distance_dp(word1, word2):
+  m, n = len(word1), len(word2)
+  dp = [[None for _ in range(n + 1)] for _ in range(m + 1)]
+  for i in range(m + 1):
+    for j in range(n + 1):
+      if i == 0: dp[i][j] = j
+      elif j == 0: dp[i][j] = i
+      elif word1[i - 1] == word2[j - 1]:
+        dp[i][j] = dp[i - 1][j - 1]
+      else:
+        dp[i][j] = 1 + min(
+          dp[i][j - 1],
+          dp[i - 1][j],
+          dp[i - 1][j - 1]
+        )
+  return dp[m][n]
+```
+
+**Time complexity**: `O(m * n)`
+
+**Space complexity**: `O(m * n)`
+
+> **Follow up**: Can you come up with a solution that takes `O(n)` space?
