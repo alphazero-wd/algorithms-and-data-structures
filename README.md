@@ -36,7 +36,7 @@ def fib(n, memo={}):
   if n in memo: return memo[n]
   if n == 0: return 0
   if n == 1: return 1
-  memo[n] = memoize(n - 1, memo) + memoize(n - 2, memo)
+  memo[n] = solve(n - 1, memo) + solve(n - 2, memo)
   return memo[n]
 ```
 
@@ -113,10 +113,10 @@ def knapsack(items, w):
     # items[i][0] = v(i)
     # items[i][1] = w(i)
     if items[i][1] > w:
-      return recurse(i - 1, w)
+      return solve(i - 1, w)
     return max(
-      recurse(i - 1, w),
-      items[i][0] + recurse(i - 1, w - items[i][1])
+      solve(i - 1, w),
+      items[i][0] + solve(i - 1, w - items[i][1])
     )
   return solve(items.length - 1, w)
 ```
@@ -133,11 +133,11 @@ def knapsack_memoized(items, w):
     if k in memo: return memo[k]
     if i < 0 or w == 0: return 0
     if items[i][1] > w:
-      memo[k] = memoize(i - 1, w)
+      memo[k] = solve(i - 1, w)
     else:
       memo[k] = max(
-        memoize(i - 1, w),
-        items[i][0] + memoize(i - 1, w - items[i][1])
+        solve(i - 1, w),
+        items[i][0] + solve(i - 1, w - items[i][1])
       )
     return memo[k]
   return solve(items.length - 1, w)
