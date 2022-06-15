@@ -38,6 +38,47 @@ class AVLTree:
             return self.rotate_left(root)
         return root
 
+    def delete(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            return
+        elif root.val > val:
+            root.left = self.delete(root.left, val)
+        elif root.val < val:
+            root.right = self.delete(root.right, val)
+        else:
+            if not root.left and not root.right:
+                return
+            elif not root.left:
+                root = root.right
+                return root
+            elif not root.right:
+                root = root.left
+                return root
+            else:
+                min_node = self.find_min(root.right)
+                root.val = min_node.val
+                root.right = self.delete(root.right, min_node.val)
+                return root
+
+        balance_factor = self.get_balance_factor(root)
+        if balance_factor > 1 and self.get_balance_factor(root.left) >= 0:
+            return self.rotate_right(root)
+        if balance_factor < -1 and self.get_balance_factor(root.right) <= 0:
+            return self.rotate_left(root)
+        if balance_factor > 1 and self.get_balance_factor(root.left) < 0:
+            root.left = self.rotate_left(root.left)
+            return self.rotate_right(root)
+        if balance_factor < -1 and self.get_balance_factor(root.left) > 0:
+            root.right = self.rotate_right(root.right)
+            return self.rotate_left(root)
+        return root
+
+    def find_min(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        cur = root
+        while cur:
+            cur = cur.left
+        return cur
+
     def rotate_left(self, z: Optional[TreeNode]) -> Optional[TreeNode]:
         y = z.right
         temp = y.left
@@ -67,6 +108,6 @@ class AVLTree:
     def preorder(self, root: Optional[TreeNode]):
         if not root:
             return
-        print("{0} ".format(root.val), end="")
+        print(str(root.val) + ' ', end="")
         self.preorder(root.left)
         self.preorder(root.right)
