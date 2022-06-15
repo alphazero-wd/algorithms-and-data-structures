@@ -81,18 +81,18 @@ class AVLTree:
 
     def rotate_left(self, z: Optional[TreeNode]) -> Optional[TreeNode]:
         y = z.right
-        temp = y.left
+        T3 = y.left
 
         y.left = z
-        z.right = temp
+        z.right = T3
         return y
 
     def rotate_right(self, z: Optional[TreeNode]) -> Optional[TreeNode]:
         y = z.left
-        temp = y.right
+        T2 = y.right
 
         y.right = z
-        z.left = temp
+        z.left = T2
         return y
 
     def get_height(self, root: Optional[TreeNode]) -> int:
