@@ -208,5 +208,5 @@ _Explaination_:
 > ```py
 > print((10734741833 << 2) & 0x7FFFFFFF) # 36
 > ```
->
+> [Reference (StackOverFlow)](https://stackoverflow.com/questions/41610186/difference-between-javascript-bit-wise-operator-code-and-python-bit-wise-operato)
 > <br>
