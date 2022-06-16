@@ -1,76 +1,153 @@
-# Trie
+# Big-O Notation
 
-## 1. Introduction
+## 1. Definition
 
-A **trie** or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+In computer science, Big-O Notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows become arbitrary large in the **worst** case.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Trie_example.svg/1024px-Trie_example.svg.png" width="30%" />
+We denote the time complexity as `O(...)`, where `...` represents some function and `n` denotes the input size. Usually, if the input is an array of numbers then `n` will be the size of the array. If the input is a string then `n` is the size of the string.
 
-_A trie for keys "A", "to", "tea", "ted", "ten", "i", "in", and "inn"._
+## 2. Examples
 
-## 2. Implementation
+### 1. Loops
 
-### 1. Initialization
+A common reason why an algorithm is slow is that it contains many loops that go through the input. The more nested loops it contains, the slower it is. If there are `k` nested loop(s), the time complexity is `O(n^k)`. Here are some examples:
 
-Each node in a trie has two attributes: `children` is a hash map storing the character as the key, the value is the pointer to the next node; `end_of_word` is a boolean value used to indicate whether the current character is actually the end of a word.
-
-```py
-class TrieNode:
-  def __init__(self):
-    self.children = {}
-    self.end_of_word = False
-```
-
-We also need a class `Trie` that has an attribute `root`, which is the root of a trie and will be set to an empty node.
+In this example, because there is only one loop. Therefore, the time complexity is `O(n)`
 
 ```py
-class Trie:
-  def __init__(self):
-    self.root = TrieNode()
+for i in range(1, n):
+   print(i)
 ```
 
-### 2. Insertion
+Similarly, because there are two nested loops. Therefore, the time complexity is `O(n^2)`
 
-To insert a word `word` into a trie e.g `happy`. We need to start from `root` and check if `h` is in `root.children`. If not, insert `h` node and repeat the process until `y` is inserted. Then we set `end_of_word` of node `y` to `true`.
+```py
+for i in range(1, n):
+   for j in range(1, n):
+      print(i, j)
+```
 
-**Algorithm**:
+### 2. Drop Constant
 
-1. Have a temporary variable `cur` start at `root`.
-2. For each `char` in `word`, check if `char` is in `root.children`.
-   1. If `char` is not in `cur.children`, set `cur.children[char]` to a new `TrieNode()`
-   2. Set `cur` to the `cur.children[char]`
-3. Mark `cur.end_of_word` to `true`.
+Suppose `c = const` and `c > 0` then:
 
-### 3. Search
+         O(n + c) = O(n)
+         O(c * n) = O(n)
 
-To search a word `word` into a trie e.g `happy`. We need to start from `root` and check if `h` is in `root.children`. If not, that means that word does not exist. Repeat the process for every other characters in `word`. At the end, check if the last character's `end_of_word` is `true`.
+In these examples, the code inside the loop is executed `3n`, `n + 5` and `n/2` times, but the overall time complexity is still `O(n)`.
 
-**Algorithm**:
+```py
+for i in range(1, 3 * n):
+   print(i)
+```
 
-1. Have a temporary variable `cur` start at `root`.
-2. For each `char` in `word`, check if `char` is in `root.children`.
-   1. If `char` is not in `cur.children`, return `false`
-   2. Set `cur` to the `cur.children[char]`
-3. Return if `cur.end_of_word` is `true`.
+```py
+for i in range(1, n + 5):
+   print(i)
+```
 
-### 4. Check if a trie starts with a `prefix`
+```py
+for i in range(1, n, 2):
+   print(i)
+```
 
-We do exactly the same as search, except for this time, we just check every character in `prefix`. At the end, we return `true` as a prefix does not have to necessarily be the end of a word.
+As another example, the time complexity of the example below is still `O(n^2)`
 
-**Algorithm**:
+```py
+for i in range(1, n):
+   for j in range(i + 1, n):
+      print(i, j)
+```
 
-1. Have a temporary variable `cur` start at `root`.
-2. For each `char` in `word`, check if `char` is in `root.children`.
-   1. If `char` is not in `cur.children`, return `false`
-   2. Set `cur` to the `cur.children[char]`
-3. Return `true`.
+### 3. Phases
 
-## 3. Summary
+If an algorithm consists of multiple phases then the total time complexity is the largest time complexity of a single phase as the slowest phase is the bottleneck of the code.
 
-| Operation     | Time complexity |
-| ------------- | :-------------: |
-| Insert        |     `O(n)`      |
-| Search        |     `O(n)`      |
-| Search Prefix |     `O(n)`      |
+For example, the time complexities of three phases are `O(n)`, `O(n^2)` and `O(n)` so the overall time complexity is `O(n^2)`.
 
-_`n` is the number of nodes in a trie_
+```py
+# O(n)
+for i in range(1, n):
+   print(i)
+
+# O(n^2)
+for i in range(1, n):
+   for j in range(1, n):
+      print(i, j)
+
+# O(n)
+for i in range(1, n):
+   print(i)
+```
+
+### 4. Several Factors
+
+Sometimes the time complexity depends on several factors. In this case, the time complexity is `O(nm)`
+
+```py
+for i in range(1, n):
+   for j in range(1, m):
+      print(i, j)
+```
+
+### 5. Recursion (see branch [1_recursion](https://github.com/alphazero-wd/algorithms-and-data-structures/tree/1_recursion))
+
+### 6. Complexity Classes (from lowest to highest)
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Comparison_computational_complexity.svg/1024px-Comparison_computational_complexity.svg.png" width="60%" />
+
+_Some common complexity classes_
+
+- `O(1)`: **Constant Time**
+
+```py
+for i in range(1, 1000):
+   print(i)
+```
+
+- `O(log(n))`: **Logarithmic Time**
+
+```py
+i = 1
+while i < n:
+   print(i)
+   i = i * 2
+```
+
+- `O(n)`: **Linear Time**
+
+```py
+for i in range(1, n):
+   print(i)
+```
+
+- `O(nlog(n))`: **Lineararithmic Time**
+
+```py
+for i in range(1, n):
+   j = 1
+   print(i, j)
+   while j < n:
+      j = j * 2
+```
+
+- `O(n^2)`: **Quadratic Time**
+
+```py
+for i in range(1, n):
+   for j in range(1, n):
+      print(i, j)
+```
+
+- `O(n^3)`: **Cubric Time**
+
+```py
+for i in range(1, n):
+   for j in range(1, n):
+      for k in range(1, n):
+         print(i, j, k)
+```
+
+- `O(2^n)`: **Exponential Time** usually appears in recursive functions such as _computing the nth fibonacci number_ or _generate subsets_.
+
+- `O(n!)`: **Factorial Time** usually relating to _finding permutations_.
