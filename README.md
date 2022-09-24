@@ -38,7 +38,7 @@ _Examples_:
                 Case 1: T(n) = 2T(n / 2) + 1
                     Solution:
                         a = 2; b = 2 => logb(a) = log2(2) = 1
-                        f(n) = Θ(1) = Θ(n^0 + log0(n) => k = 0 => logb(a) > k
+                        f(n) = Θ(1) = Θ(n^0 + log0(n)) => k = 0 => logb(a) > k
                         => T(n) = Θ(n^logb(a)) = Θ(n^1) = Θ(n)
 
                 Case 2:
