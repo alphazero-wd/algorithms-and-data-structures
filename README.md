@@ -65,6 +65,8 @@ We do exactly the same as search, except for this time, we just check every char
    2. Set `cur` to the `cur.children[char]`
 3. Return `true`.
 
+[See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/12_trie/Trie.py)
+
 ## 3. Summary
 
 | Operation     | Time complexity |
