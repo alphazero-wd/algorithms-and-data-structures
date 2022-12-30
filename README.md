@@ -52,17 +52,16 @@ _Examples_:
 
   Solution:
 
-  $a = 2; b = 2 => \log_{b} a = \log_{2} 2 = 1$
+  We have $a = 2; b = 2$, so $\log_{b} a = \log_{2} 2 = 1$
                         
-  $f(n) = Θ(1) = Θ(n^0 + \log_{0} n) => k = 0 => \log_{b} a > k$
+  $f(n) = Θ(1) = Θ(n^0 + \log_{0} n)$, which means $k = 0$, so $\log_{b} a > k$
 
   Therefore, $T(n) = Θ(n^{\log_{b} a}) = Θ(n^1) = Θ(n)$
 
 - Case 2:
   - Case 2.1: $T(n) = 2T(\frac{n}{2}) + n$
-    Solution: 
-    
-    $\log_{b} a = 1; k = 1 => \log_{b} a = k; p = 0$
+  
+    Solution: $\log_{b} a = 1; k = 1$, so $\log_{b} a = k; p = 0$
     
     Therefore, $T(n) = Θ(n^k\log_{2}^{p + 1} n) = Θ(n\log_{2} n)$
 
@@ -96,51 +95,31 @@ _Examples_:
 
 ### **1. Compute the nth fibonacci number in a fibonacci sequence:**
 
-                    1, 1, 2, 3, 5, 8, 13, 21, ...
+$1, 1, 2, 3, 5, 8, 13, 21, ...$
 
-We can see that nth fibonacci number is the sum of the two previous number. We can define the function `fib` like this:
+We can see that nth fibonacci number is the sum of the two previous number. We can define the function `fib(n)` like this:
 
-                    fib(n) = 1 if n <= 2
-                           = fib(n - 1) + fib(n - 2) if n > 2
+```math
+  fib(n) = 
+  \begin{cases} 
+    1, 0 \le n \leq 1 \\ fib(n - 1) + fib(n - 2)
+  \end{cases}$
+```
 
 > [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/1_recursion/fibonacci.py)
 
-**Time complexity**: `O(2^n)`
+**Time complexity**: $O(2^n)$
 
 _Proof:_
 
+```math
+    T(n) =
+    \begin{cases} 
+    1, 0 \le n \leq 1 \\ T(n - 1) + T(n - 2) = 2T(n - 1)
+  \end{cases}$
 ```
-    T(n) = 1 if n <= 2
-         = T(n - 1) + T(n - 2) + 1 if n > 2
-         = 2T(n - 1) + 1
-    Applying master theorem we for decreasing function have: T(n) = O(2^n)
-```
+Applying master theorem we for decreasing function have: $T(n) = O(2^n)$
 
 See the example of `fib(5)`:
 
 ![fib(5)](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Fibonacci_Tree_5.svg/1280px-Fibonacci_Tree_5.svg.png)
-
-### **2. Pascal Triangle: Compute the value of a cell at position `(row, col)` starting at 0**
-
-![Pascal Triangle](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)
-
-    Input: row = 4, col = 2
-    Output: 6
-
-We can see that the value at position `(row, col)` is the sum of the value at position `(row - 1, col - 1)` and `(row - 1, col)`. We can define function `pascalTriangle` like this:
-
-    pascalTriangle(row, col) =  1 if col = 0
-                             =  0 if row = 0
-                             =  pascalTriangle(row - 1, col) + pascalTriangle(row - 1, col - 1) if row > 0 and col > 0
-
-> [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/1_recursion/pascalTriangle.py)
-
-**Time complexity**: `O(2^n)`, where `n` is the given `row`
-
-_Proof:_
-
-```
-    T(n) = 1 if n = 0
-         = 2T(n - 1) + 1 if n > 0
-    Applying master theorem for decreasing function we have: T(n) = O(2^n)
-```
