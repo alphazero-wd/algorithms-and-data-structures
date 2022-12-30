@@ -66,7 +66,7 @@ Double-Hashing works by having a second hashing function that hashes the result 
 
 A commonly used double-hashing function is as following:
 
-   $h2(x) = R - (x mod R) (R \leq n)$, $n$ is the size of the HT
+   $h2(x) = R - (x \mod R) (R \leq n)$, $n$ is the size of the HT
 
 ## 4. Implementation
 
