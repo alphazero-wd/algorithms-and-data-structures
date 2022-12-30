@@ -16,7 +16,7 @@ Scan through every element in `nums` and see if a number in `nums` is equal to `
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/searching/linearSearch.py)
 
-**Time complexity**: `O(n)` (`n` is the number of elements in `nums`)
+**Time complexity**: $O(n)$ ($n$ is the number of elements in `nums`)
 
 ## **2. Binary Search**
 
@@ -37,14 +37,14 @@ The idea is if `nums` is sorted, then we will find the middle element `nums[mid]
 5. Repeat step 1 to 4
 6. Return `-1` if `target` is not found in `nums`
 
-**Time complexity**: `O(log(n))`
+**Time complexity**: $O(\log_{2} n)$
 
 ## **3. Summary**
 
 | Algorithm     | Time complexity |
 | ------------- | --------------- |
-| Linear Search | `O(n)`          |
-| Binary Search | `O(log(n))`     |
+| Linear Search | $O(n)$          |
+| Binary Search | $O(\log_{2} n)$     |
 
 # Sorting
 
@@ -72,9 +72,9 @@ Bubble Sort is the simplest sorting algorithm among all. It works by swapping an
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/sorting/bubbleSort.py)
 
-**Time complexity**: `O(n^2)`
+**Time complexity**: $O(n^2)$
 
-**Space complexity**: `O(1)`
+**Space complexity**: $O(1)$
 
 ## **2. Selection Sort**
 
@@ -94,9 +94,9 @@ Selection Sort works by finding the minimum element after every element and swap
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/sorting/selectionSort.py)
 
-**Time complexity**: `O(n^2)`
+**Time complexity**: $O(n^2)$
 
-**Space complexity**: `O(1)`
+**Space complexity**: $O(1)$
 
 ## **3. Insertion Sort**
 
@@ -115,9 +115,9 @@ Insertion Sort works by swapping current element with previous elements until it
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/sorting/insertionSort.py)
 
-**Time complexity**: `O(n^2)`
+**Time complexity**: $O(n^2)$
 
-**Space complexity**: `O(1)`
+**Space complexity**: $O(1)$
 
 ## **4. Quicksort**
 
@@ -140,14 +140,13 @@ Quicksort works by **partitioning** the element, which means we choose a **pivot
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/sorting/quickSort.py)
 
-**Time complexity**: `O(nlog(n))`, worst case `O(n^2)`
+**Time complexity**: $O(n\log_{2} n)$, worst case $O(n^2)$
 
 _Proof_: Using master theorem for dividing functions, we have:
 
-        T(n) = 2T(n / 2) + n
-        T(n) = O(nlog(n))
+   $T(n) = 2T(\frac{n}{2}) + n = O(n\log_{2} n)$
 
-**Space complexity**: `O(log(n))`
+**Space complexity**: $O(\log_{2} n)$
 
 ### **Extra algorithm: Quick Select**
 
@@ -168,14 +167,13 @@ Quick select is an algorithm based on quicksort to find the kth smallest element
 
 [See the code here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/sorting/quickSelect.py)
 
-**Time complexity**: `O(n)`, worst case: `O(n^2)`
+**Time complexity**: $O(n)$, worst case: $O(n^2)$
 
 _Proof_: Using master theorem for dividing functions, we have:
 
-        T(n) = T(n / 2) + n
-        T(n) = O(n)
+   $T(n) = T(\frac{n}{2}) + n = O(n)$
 
-**Space complexity**: `O(1)`
+**Space complexity**: $O(1)$
 
 ## **5. Merge Sort**
 
@@ -194,22 +192,21 @@ Merge Sort works by dividing an array into halves until it can be sorted, and me
 
 [See the implementation here](https://github.com/alphazero-wd/algorithms-and-data-structures/blob/2_searching-and-sorting/sorting/mergeSort.py)
 
-**Time complexity**: `O(nlog(n))`
+**Time complexity**: $O(n\log_{2} n)$
 
 _Proof_: Using master theorem for dividing functions, we have:
 
-        T(n) = 2T(n / 2) + n
-        T(n) = O(nlog(n))
+   $T(n) = 2T(\frac{n}{2}) + n = O(\log_{2} n)$
 
-**Space complexity**: `O(n)`
+**Space complexity**: $O(n)$
 
 ## **6. Summary**
 
 | Algorithm      | Time complexity | Space complexity |
 | -------------- | --------------- | ---------------- |
-| Bubble Sort    | `O(n)`          | `O(1)`           |
-| Selection Sort | `O(n^2)`        | `O(1)`           |
-| Insertion Sort | `O(n^2)`        | `O(1)`           |
-| Quick Sort     | `O(nlog(n))`    | `O(log(n))`      |
-| Quick Select   | `O(n)`          | `O(1)`           |
-| Merge Sort     | `O(nlog(n))`    | `O(n)`           |
+| Bubble Sort    | $O(n)$          | $O(1)$           |
+| Selection Sort | $O(n^2)$        | $O(1)$           |
+| Insertion Sort | $O(n^2)$        | $O(1)$           |
+| Quick Sort     | $O(\log_{2} n)$    | $O(\log_{2} n)$      |
+| Quick Select   | $O(n)$          | $O(1)$           |
+| Merge Sort     | $O(n\log_{2} n)$    | $O(n)$           |
