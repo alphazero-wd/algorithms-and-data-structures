@@ -7,7 +7,7 @@ A **Hash table** (HT) is a **fixed size data structure** that stores key-value p
 ![Simple hash table overview](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Hash_table_3_1_1_0_1_0_0_SP.svg/1280px-Hash_table_3_1_1_0_1_0_0_SP.svg.png)
 _A small phone book as a hash table_
 
-A HT contains two main methods: `get()` and `put()`. `get()` is used to retrieve data from the HT and `put()` is used to add a key-value pair into the HT. Both of these operations can have a time complexity of `O(1)`.
+A HT contains two main methods: `get(key)` and `put(key, value)`. `get(key)` is used to retrieve data from the HT and `put(key, value)` is used to add a key-value pair into the HT. Both of these operations can have a time complexity of $O(1)$.
 
 The keys in a HT must be **unique**, while the values can be **repeated**.
 
@@ -22,12 +22,12 @@ localStorage.getItem("testKey"); // prints "testValue"
 
 ## **2. Hashing Technique**
 
-The most important part of a HT is the hash function `H(x)`. The hash function `H(x)` hashes a key `x` into an index (a whole number in a fixed range) for an array that stores all the data.
+The most important part of a HT is the hash function $h(x)$. The hash function $h(x)$ hashes a key $x$ into an index (a whole number in a fixed range) for an array that stores all the data.
 
 A hash function must satisfy three requirements as follows:
 
 1. _Deterministic_: Equal keys produce equal hash values.
-2. _Efficiency_: It should be in `O(1)` time.
+2. _Efficiency_: It should be in $O(1)$ time.
 3. _Uniform distribution_: It makes the most use of the array.
 
 The main problem with HT is to handle **collisions**. Collisions occur when two keys in a HT both hash to the same index in the array. To address this problem, there are several ways, but only _open addressing (probing)_ will be considered.
@@ -44,7 +44,7 @@ Probing works by finding the next available index in the array. There are two ty
 
 Linear Probing works by finding the next available index in the array via **incremental trials**
 
-An example of sequence using linear probing is: `H(x) + 1, H(x) + 2, H(x) + 3, H(x) + k`.
+An example of sequence using linear probing is: $h(x) + 1$, $h(x) + 2$, $h(x) + 3$, $h(x) + k$.
 
 In the image above, we resolved the collision by finding the next empty spot to insert "Sandra Dee" into index 153 in the array.
 
@@ -54,19 +54,19 @@ However, "Ted Baker" also hashes to index 153, we also find the next available i
 
 Quadratic Probing is by taking the original hash index and adding successive values of an arbitrary quadratic polynomial until an open slot is found.
 
-An example of sequence using quadratic probing is: `H(x) + 1^2, H(x) + 2^2, H(x) + 3^2, ..., H(x) + k^2`
+An example of sequence using quadratic probing is: $h(x) + 1^2$, $h(x) + 2^2$, $h(x) + 3^2$, ..., $h(x) + k^2$
 
 ### 3. Rehashing/Double-Hashing
 
 Double-Hashing works by having a second hashing function that hashes the result from the original. There are three requirements for a good hashing function:
 
 1. _Different_: It needs to be different to distribute it better.
-2. _Efficiency_: It needs to be `O(1)` in time.
+2. _Efficiency_: It needs to be $O(1)$ in time.
 3. _Nonzero_: It should never evaluates to zero as zero gives the initial hash value.
 
 A commonly used double-hashing function is as following:
 
-                    H2(x) = R - (x % R) (R <= the size of the HT)
+   $h2(x) = R - (x mod R) (R \leq n)$, $n$ is the size of the HT
 
 ## 4. Implementation
 
@@ -90,5 +90,5 @@ A commonly used double-hashing function is as following:
 
 | Operation | Average Case | Worst Case |
 | :-------: | :----------: | :--------: |
-|  Insert   |    `O(1)`    |   `O(n)`   |
-|   Find    |    `O(1)`    |   `O(n)`   |
+|  Insert   |    $O(1)$    |   $O(n)$   |
+|   Find    |    $O(1)$    |   $O(n)$   |
