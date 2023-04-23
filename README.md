@@ -43,7 +43,7 @@ $T(n) = aT(\frac{n}{b}) + f(n) (a \geq 1, b > 1, f(n) = O(n^k{\log^p_{2} n)}), k
   - Case 2.2: If $p = -1$ then $T(n) = Θ(n^k\log_{2}{(\log_{2} n)})$
   - Case 2.3: If $p < -1$ then $T(n) = Θ(n^k)$
 - Case 3: If $\log_{b} a < k$ then:
-  - Case 3.1: If $p >= 0$ then $T(n) = Θ(n^k{\log^p_{2} n})$
+  - Case 3.1: If $p \geq 0$ then $T(n) = Θ(n^k{\log^p_{2} n})$
   - Case 3.2: If $p < 0$ then $T(n) = O(n^k)$
 
 _Examples_:
@@ -74,7 +74,7 @@ _Examples_:
 
   - Case 2.3: $T(n) = 2T(\frac{n}{2}) + (n\log_{n}^{-2})$
                     
-    Solution: $log_{b} a = 1; k = 1; p = -2 > -1$
+    Solution: $log_{b} a = 1; k = 1; p = -2 < -1$
     
     Therefore, $T(n) = Θ(n)$
 
