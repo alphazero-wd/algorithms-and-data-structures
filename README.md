@@ -54,7 +54,7 @@ _Examples_:
 
   We have $a = 2; b = 2$, so $\log_{b} a = \log_{2} 2 = 1$
                         
-  $f(n) = Θ(1) = Θ(n^0 + \log_{0} n)$, which means $k = 0$, so $\log_{b} a > k$
+  $f(n) = Θ(1) = Θ(n^0)$, which means $k = 0$, so $\log_{b} a > k$
 
   Therefore, $T(n) = Θ(n^{\log_{b} a}) = Θ(n^1) = Θ(n)$
 
@@ -79,7 +79,7 @@ _Examples_:
     Therefore, $T(n) = Θ(n)$
 
 - Case 3:
-  - Case 3.1: $T(n) = T(frac{n}{2}) + n^2$
+  - Case 3.1: $T(n) = T(\frac{n}{2}) + n^2$
     
     Solution: $\log_{b} a = 0; k = 2; p = 0 \geq 0$
     
