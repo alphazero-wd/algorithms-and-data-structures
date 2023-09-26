@@ -91,13 +91,11 @@ _Examples_:
     
     Therefore, $T(n) = Θ(n^3)$
 
-## Recursion Examples
-
-### **1. Compute the nth fibonacci number in a fibonacci sequence:**
+## Recursion Example - Compute the nth number in a Fibonacci sequence
 
 $1, 1, 2, 3, 5, 8, 13, 21, ...$
 
-We can see that nth fibonacci number is the sum of the two previous number. We can define the function `fib(n)` like this:
+We can see that the nth Fibonacci number is the sum of the two previous numbers. We can define the function `fib(n)` like this:
 
 ```math
   fib(n) = 
